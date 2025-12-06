@@ -85,6 +85,7 @@ class Appliance:  # pylint: disable=too-many-public-methods
     _is_fan_continuous: bool
     _compressor_activity: int
     _enabled_zones: list[int]
+    _individual_zone_temperatures: list[float]
     _skip_update_until: datetime = datetime.min
 
     MAX_CONCURRENT_REQUESTS = 4
@@ -158,6 +159,7 @@ class Appliance:  # pylint: disable=too-many-public-methods
                 self._is_fan_continuous = data['fanIsCont']
                 self._compressor_activity = data['compressorActivity']
                 self._enabled_zones = data['enabledZones']
+                self._individual_zone_temperatures = data['individualZoneTemperatures_oC']
             except ActronException as e:
                 _LOGGER.error("Error extracting values: %s", e)
                 raise
@@ -385,6 +387,11 @@ class Appliance:  # pylint: disable=too-many-public-methods
     def enabled_zones(self) -> list[int]:
         """Return device's enabled zones."""
         return self._enabled_zones
+
+    @property
+    def individual_zone_temperatures(self) -> list[float]:
+        """Return device's individual zone temperatures."""
+        return self._individual_zone_temperatures
 
     @property
     def zone_names(self) -> list[str]:

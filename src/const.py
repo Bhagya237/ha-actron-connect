@@ -5,6 +5,7 @@ from homeassistant.const import UnitOfTemperature
 
 DOMAIN = "actron_connect"
 ATTR_INSIDE_TEMPERATURE = "inside_temperature"
+ATTR_ZONE_INSIDE_TEMPERATURE = "zone_inside_temperature"
 CONF_SERVICE_CONFIGURATION = "service_configuration"
 CONF_USER = "user"
 
