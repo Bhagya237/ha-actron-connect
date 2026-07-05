@@ -11,6 +11,5 @@ Icon
 *.py[cod]
 __pycache__
 
-
 # Local device probe output — contains Wi-Fi keys / cloud API tokens. Never commit.
 actron_probe_*.txt
