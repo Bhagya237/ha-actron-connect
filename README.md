@@ -44,7 +44,19 @@ Due to limitations with the Actron Connect API, it is currently not possible to 
 
 ## Installation
 
-This custom component hasn't been published yet, and therefore needs to be installed manually. To install the component, copy all the files from the `src` folder of this repository into a new `actron_connect` folder in the `/config/custom_components` folder of your Home Assistant installation. It is important that the name of the folder is `actron_connect` and is not modified.
+### Option 1 — HACS (recommended)
+
+This repository is structured as a [HACS](https://hacs.xyz/) custom integration.
+
+1. In Home Assistant, open **HACS**.
+2. Click the **⋮** menu (top-right) → **Custom repositories**.
+3. Add `https://github.com/Bhagya237/ha-actron-connect` with the category **Integration**, then click **Add**.
+4. Find **Actron Connect** in the HACS list, open it, and click **Download**.
+5. **Restart Home Assistant.**
+
+### Option 2 — Manual
+
+Copy the `custom_components/actron_connect` folder from this repository into the `/config/custom_components` folder of your Home Assistant installation (so you end up with `/config/custom_components/actron_connect/`). It is important that the folder is named `actron_connect` and is not modified.
 
 Restart Home Assistant for the custom component to be detected and initialised.
 
