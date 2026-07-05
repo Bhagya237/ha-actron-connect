@@ -1,0 +1,14 @@
+{
+  "domain": "actron_connect",
+  "name": "Actron Connect",
+  "codeowners": [
+    "@Bhagya237",
+    "@fruffin"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Bhagya237/ha-actron-connect",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Bhagya237/ha-actron-connect/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Actron Connect",
+  "content_in_root": false,
+  "domains": ["actron_connect"],
+  "country": ["AU"],
+  "render_readme": true
+}
