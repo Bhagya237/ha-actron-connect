@@ -354,6 +354,18 @@ class Appliance:  # pylint: disable=too-many-public-methods
         return ACTRON_TO_HVACMODE[self._mode]
 
     @property
+    def retained_mode(self) -> HVACMode | None:
+        """Return the mode the unit is holding, whether or not it's running.
+
+        amOn and mode are independent fields on the device, so a powered-off
+        unit still remembers which direction it would run in. `mode` above has
+        to mask that as OFF because Home Assistant requires it; this exposes
+        the underlying value for callers that need the direction before they
+        turn the unit back on.
+        """
+        return ACTRON_TO_HVACMODE.get(getattr(self, "_mode", None))
+
+    @property
     def fan_speed(self) -> str:
         """Return device's fan speed."""
         return ACTRON_TO_FAN_SPEED_STRING[self._fan_speed]

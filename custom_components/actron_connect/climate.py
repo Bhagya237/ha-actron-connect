@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Any
 import logging
 
 from homeassistant.components.climate import (
@@ -111,6 +112,17 @@ class ActronClimate(ActronEntity, ClimateEntity):
     def hvac_mode(self) -> HVACMode:
         """Return the current HVAC mode."""
         return self.device.mode
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Expose the mode the unit is holding, even while it's off.
+
+        hvac_mode must report OFF when the unit is off, which hides which
+        direction it would run in. The hardware keeps amOn and mode as separate
+        fields and doesn't lose it, so surface the retained value for
+        automations that need the direction before restarting the unit.
+        """
+        return {"retained_mode": self.device.retained_mode}
 
     @property
     def target_temperature(self) -> float:
