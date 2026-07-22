@@ -57,10 +57,19 @@ class ActronUser:
     
     @classmethod
     def from_dict(cls, data: dict) -> "ActronUser":
-        """Create from dictionary."""
+        """Create from dictionary.
+
+        Callers pass the nested dict out of a config entry's data, which is
+        reused across setup attempts, so this must not mutate its input and
+        must tolerate being handed values that are already deserialized.
+        """
+        # Copy first — mutating the caller's dict poisons it for the next call
+        data = dict(data)
         # Convert ISO format strings back to datetime objects
-        if data.get("last_updated"):
+        # The isinstance check keeps this idempotent; the truthiness check
+        # preserves the original behaviour of skipping empty/None values.
+        if data.get("last_updated") and isinstance(data["last_updated"], str):
             data["last_updated"] = datetime.fromisoformat(data["last_updated"])
-        if data.get("created_at"):
+        if data.get("created_at") and isinstance(data["created_at"], str):
             data["created_at"] = datetime.fromisoformat(data["created_at"])
         return cls(**data)
